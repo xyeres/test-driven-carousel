@@ -1,9 +1,8 @@
 import React from 'react'; // 1
-import { configure, shallow } from 'enzyme'; // 2
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme'; // 2
 import CarouselButton from '../CarouselButton';
 
-configure({adapter: new Adapter()})
+
 
 describe('CarouselButton', () => {
   const text = 'Button text';
