@@ -7,8 +7,7 @@ const getUsernameUrl = (username) =>
 
 const getAttribution = ({ name, username }) => (
   <>
-    {' '}
-    // Another lame boring Photo by <a href={getUsernameUrl(username)}>{name}</a> on{' '}
+    {' '} Another lame boring Photo by <a href={getUsernameUrl(username)}>{name}</a> on{' '}
     <a href={`https://unsplash.com/?${referralParams}`}>Unsplash</a>
   </>
 );
