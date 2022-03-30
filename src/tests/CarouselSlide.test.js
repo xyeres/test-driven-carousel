@@ -44,7 +44,7 @@ it('passes `imgUrl` through to props.Img', () => {
     expect(wrapper.prop('onClick')).toBe(onClick);
     expect(wrapper.prop('className')).toBe(className);
   });
-  
+
   describe('Img', () => {
     let mounted;
     const imgUrl = 'https://example.com/default.jpg';
@@ -53,6 +53,17 @@ it('passes `imgUrl` through to props.Img', () => {
       const Img = CarouselSlide.defaultProps.Img;
       mounted = mount(<Img src={imgUrl} imgHeight={500} />);
     });
+
+    it('has expected static styles', ()=>{
+      expect(mounted).toHaveStyleRule('width', '100%');
+      expect(mounted).toHaveStyleRule('object-fit', 'cover');
+    })
+
+    it('uses imgHeight as the height style property', ()=>{
+      expect(mounted).toHaveStyleRule('height', '500px')
+      mounted.setProps({imgHeight: '300px'})
+      expect(mounted).toHaveStyleRule('height', '300px')
+    })
 
     it('renders an <img> with the given src', () => {
       expect(mounted.containsMatchingElement(<img src={imgUrl} />)).toBe(true);
