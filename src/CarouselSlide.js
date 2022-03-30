@@ -12,9 +12,9 @@ const Img = styled.img`
 `;
 
 
-const CarouselSlide = ({ imgUrl, imgHeight, description, attribution, ...rest }) => (
+const CarouselSlide = ({ imgUrl, Img, imgHeight, description, attribution, ...rest }) => (
   <figure {...rest}>
-    <Img src={imgUrl} imgHeight={imgHeight} />
+    <Img alt='an image' src={imgUrl} imgHeight={imgHeight} />
     <figcaption>
       <strong>{description}</strong> {attribution}
     </figcaption>
