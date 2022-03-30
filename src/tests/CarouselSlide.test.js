@@ -46,6 +46,14 @@ describe('CarouselSlide', () => {
     expect(wrapper.prop('className')).toBe(className);
   });
 
+  it('renders correctly', () => {
+    wrapper.setProps({
+      description:'descriotn', 
+      attribution: 'attrib',
+    })
+    expect(wrapper).toMatchSnapshot()
+  })
+
   describe('Img', () => {
     let mounted;
     const imgUrl = 'https://example.com/default.jpg';
@@ -55,10 +63,9 @@ describe('CarouselSlide', () => {
       mounted = mount(<Img src={imgUrl} imgHeight={500} />);
     });
 
-    it('has expected static styles', () => {
-      expect(mounted).toHaveStyleRule('width', '100%');
-      expect(mounted).toHaveStyleRule('object-fit', 'cover');
-    });
+    it('renders correctly', () => {
+      expect(mounted.find('img')).toMatchSnapshot()
+    })
 
     it('uses imgHeight as the height style property', () => {
       expect(mounted).toHaveStyleRule('height', '500px');
@@ -85,9 +92,6 @@ describe('CarouselSlide', () => {
         expect(mounted.find(TestImg)).toHaveStyleRule('height', 'auto');
         expect(mounted.find(TestImg)).toHaveStyleRule('object-fit', 'fill');
     });
-
-    it('renders an <img> with the given src', () => {
-      expect(mounted.containsMatchingElement(<img src={imgUrl} />)).toBe(true);
-    });
+    
   });
 });
