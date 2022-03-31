@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarouselButton renders correctly 1`] = `
+.c0 {
+  padding: 0.5rem;
+  border: none;
+  background-color: lightblue;
+  margin-right: 1rem;
+  color: darkpink;
+}
+
+<button
+  className="c0"
+>
+  Button text
+</button>
+`;

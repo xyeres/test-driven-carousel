@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CarouselButton from './CarouselButton';
 import CarouselSlide from './CarouselSlide';
+import style from 'styled-components';
 
+const Container = style.div`
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+
+`
 class Carousel extends React.PureComponent {
   static propTypes = {
     defaultImg: CarouselSlide.propTypes.Img,
@@ -14,6 +22,7 @@ class Carousel extends React.PureComponent {
   static defaultProps = {
     defaultImg: CarouselSlide.defaultProps.Img,
     defaultImgHeight: CarouselSlide.defaultProps.imgHeight,
+    Container: Container,
   }
 
   state = {
@@ -37,15 +46,21 @@ class Carousel extends React.PureComponent {
   render() {
     const { defaultImg, defaultImgHeight, slides, ...rest } = this.props;
     return (
-      <div {...rest}>
-        <CarouselSlide Img={defaultImg} imgHeight={defaultImgHeight} {...slides[this.state.slideIndex]} />
-        <CarouselButton data-action="prev" onClick={this.handlePrevClick}>
-          Prev
-        </CarouselButton>
-        <CarouselButton data-action="next" onClick={this.handleNextClick}>
-          Next
-        </CarouselButton>
-      </div>
+      <Container {...rest}>
+        <CarouselSlide
+          Img={defaultImg}
+          imgHeight={defaultImgHeight}
+          {...slides[this.state.slideIndex]}
+        />
+        <div>
+          <CarouselButton data-action="prev" onClick={this.handlePrevClick}>
+            Prev
+          </CarouselButton>
+          <CarouselButton data-action="next" onClick={this.handleNextClick}>
+            Next
+          </CarouselButton>
+        </div>
+      </Container>
     );
   }
 }

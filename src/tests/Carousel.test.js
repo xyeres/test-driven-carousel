@@ -5,6 +5,7 @@ import CarouselButton from '../CarouselButton';
 import CarouselSlide from '../CarouselSlide';
 
 describe('Carousel', () => {
+  let Container;
   let wrapper;
 
   const slides = [
@@ -26,11 +27,12 @@ describe('Carousel', () => {
   ];
 
   beforeEach(() => {
+    Container = Carousel.defaultProps.Container;
     wrapper = shallow(<Carousel slides={slides} />);
   });
 
-  it('renders a <div>', () => {
-    expect(wrapper.type()).toBe('div');
+  it('renders a <Container>', () => {
+    expect(wrapper.type()).toBe(Container);
   });
 
   it('has an initial `slideIndex` of 0', () => {
@@ -65,14 +67,13 @@ describe('Carousel', () => {
     );
   });
 
-    it('allows individual slides to override Img and imgHeight', () => {
-      const Img = () => 'test';
-      const imgHeight = 1234;
-      wrapper.setProps({ slides: [{ ...slides[0], Img, imgHeight }] });
-      expect(wrapper.find(CarouselSlide).prop('Img')).toBe(Img);
-      expect(wrapper.find(CarouselSlide).prop('imgHeight')).toBe(imgHeight);
-    });
-  
+  it('allows individual slides to override Img and imgHeight', () => {
+    const Img = () => 'test';
+    const imgHeight = 1234;
+    wrapper.setProps({ slides: [{ ...slides[0], Img, imgHeight }] });
+    expect(wrapper.find(CarouselSlide).prop('Img')).toBe(Img);
+    expect(wrapper.find(CarouselSlide).prop('imgHeight')).toBe(imgHeight);
+  });
 
   describe('with a middle slide selected', () => {
     // 1

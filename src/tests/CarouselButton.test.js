@@ -1,32 +1,37 @@
 import React from 'react'; // 1
-import { shallow } from 'enzyme'; // 2
+import { mount } from 'enzyme'; // 2
 import CarouselButton from '../CarouselButton';
-
-
+import styled from 'styled-components';
 
 describe('CarouselButton', () => {
   const text = 'Button text';
-  let wrapper;
+  let mounted;
 
   beforeEach(() => {
-    wrapper = shallow(<CarouselButton>{text}</CarouselButton>);
+    mounted = mount(<CarouselButton>{text}</CarouselButton>);
   });
 
-  it('renders a <button>', () => {
-    expect(wrapper.type()).toBe('button');
+  it('renders correctly', () => {
+    expect(mounted.find('button')).toMatchSnapshot();
   });
 
   it('passes `children` through to the <button>', () => {
-    expect(wrapper.prop('children')).toBe(text);
+    expect(mounted.prop('children')).toBe(text);
+  });
+
+  it('allows color prop to be overriden', () => {
+    const color = 'lightpurple';
+    mounted.setProps({ color });
+    expect(mounted.prop('color')).toBe(color);
   });
 
   it('passes other props through to the <button>', () => {
     const onClick = () => {};
     const className = 'my-carousel-button';
     const dataAction = 'prev';
-    wrapper.setProps({ onClick, className, 'data-action': dataAction }); // 1
-    expect(wrapper.prop('onClick')).toBe(onClick);
-    expect(wrapper.prop('className')).toBe(className);
-    expect(wrapper.prop('data-action')).toBe(dataAction);
+    mounted.setProps({ onClick, className, 'data-action': dataAction }); // 1
+    expect(mounted.prop('onClick')).toBe(onClick);
+    expect(mounted.prop('className')).toBe(className);
+    expect(mounted.prop('data-action')).toBe(dataAction);
   });
 });
