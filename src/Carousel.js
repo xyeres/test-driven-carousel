@@ -10,7 +10,6 @@ const Container = style.div`
   flex-direction: column;
   justify-items: center;
   align-items: center;
-
 `;
 export class Carousel extends React.PureComponent {
   static propTypes = {
